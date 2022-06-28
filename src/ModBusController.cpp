@@ -10,6 +10,7 @@ ModBusController::ModBusController()
   uint8_t test = master(functionCode);
 }
 
+// todo: send request 할 때 공통화 작업 할 경우, 아래의 function code별 분기 메소드 구조가 바뀔 수 있을 것 같음.
 void ModBusController::readCoil()
 {
   cout << "Call readCoil!!" << endl;
