@@ -1,12 +1,12 @@
 #include <stdint.h>
 
-#ifndef __ModBusController_h__
-#define __ModBusController_h__
+#ifndef __ModBusMasterManager_h__
+#define __ModBusMasterManager_h__
 
-class ModBusController
+class ModBusMasterManager
 {
   public:
-    ModBusController();
+    ModBusMasterManager();
     
     /// @brief ModBus Coil Function (Only Access Bit)
     void readCoil();
@@ -44,4 +44,4 @@ class ModBusController
     uint8_t master(uint8_t functionCode);
 };
 
-#endif __ModBusController_h__
+#endif __ModBusMasterManager_h__

@@ -1,9 +1,9 @@
 #include "iostream"
-#include "ModBusController.h"
+#include "ModBusMasterManager.h"
 
 using namespace std;
 
-ModBusController::ModBusController()
+ModBusMasterManager::ModBusMasterManager()
 {
   /// function code sample
   uint8_t functionCode = readCoilCode;
@@ -11,47 +11,47 @@ ModBusController::ModBusController()
 }
 
 // todo: send request 할 때 공통화 작업 할 경우, 아래의 function code별 분기 메소드 구조가 바뀔 수 있을 것 같음.
-void ModBusController::readCoil()
+void ModBusMasterManager::readCoil()
 {
   cout << "Call readCoil!!" << endl;
 }
 
-void ModBusController::readDiscreteInputs()
+void ModBusMasterManager::readDiscreteInputs()
 {
   cout << "Call readDiscreteInputs!!" << endl;
 }
 
-void ModBusController::writeSingleCoil()
+void ModBusMasterManager::writeSingleCoil()
 {
   cout << "Call writeSingleCoil!!" << endl;
 }
 
-void ModBusController::writeMultipleCoils()
+void ModBusMasterManager::writeMultipleCoils()
 {
   cout << "Call writeMultipleCoils!!" << endl;
 }
 
-void ModBusController::readHoldingRegisters()
+void ModBusMasterManager::readHoldingRegisters()
 {
   cout << "Call readHoldingRegisters!!" << endl;
 }
 
-void ModBusController::readInputRegister()
+void ModBusMasterManager::readInputRegister()
 {
   cout << "Call readInputRegister!!" << endl;
 }
 
-void ModBusController::writeSingleRegister()
+void ModBusMasterManager::writeSingleRegister()
 {
   cout << "Call writeSingleRegister!!" << endl;
 }
 
-void ModBusController::writeMultipleRegisters()
+void ModBusMasterManager::writeMultipleRegisters()
 {
   cout << "Call writeMultipleRegisters!!" << endl;
 }
 
-void ModBusController::selectCallFunction(uint8_t functionCode)
+void ModBusMasterManager::selectCallFunction(uint8_t functionCode)
 {
   
   switch (functionCode)
@@ -80,14 +80,15 @@ void ModBusController::selectCallFunction(uint8_t functionCode)
   }
 }
 
-uint8_t ModBusController::master(uint8_t functionCode)
+uint8_t ModBusMasterManager::master(uint8_t functionCode)
 {
   selectCallFunction(functionCode);
   return successCode;
 }
 
 /// this main is only for test run...
-void main()
+int main()
 {
-  ModBusController();
+  ModBusMasterManager();
+  return 0;
 }

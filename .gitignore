@@ -6,7 +6,7 @@
 .DS_Store
 
 ### batch or unix file ###
-src/ModBusController
+src/ModBusMasterManager
 
 ### C ###
 # Prerequisites
