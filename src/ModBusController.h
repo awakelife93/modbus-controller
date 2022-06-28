@@ -37,8 +37,11 @@ class ModBusController
     static const uint8_t writeSingleRegisterCode     = 0x06;
     static const uint8_t writeMultipleRegistersCode  = 0x10;
         
-    uint8_t modBusHandler(uint8_t functionCode);
+    /// @brief Logics...
     void selectCallFunction(uint8_t functionCode);
+    
+    /// @brief Modbus Master Function
+    uint8_t master(uint8_t functionCode);
 };
 
 #endif __ModBusController_h__

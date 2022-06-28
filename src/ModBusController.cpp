@@ -7,7 +7,7 @@ ModBusController::ModBusController()
 {
   /// function code sample
   uint8_t functionCode = readCoilCode;
-  uint8_t test = modBusHandler(functionCode);
+  uint8_t test = master(functionCode);
 }
 
 void ModBusController::readCoil()
@@ -79,15 +79,14 @@ void ModBusController::selectCallFunction(uint8_t functionCode)
   }
 }
 
-uint8_t ModBusController::modBusHandler(uint8_t functionCode)
+uint8_t ModBusController::master(uint8_t functionCode)
 {
   selectCallFunction(functionCode);
   return successCode;
 }
 
-int main()
+/// this main is only for test run...
+void main()
 {
-  /// test run...
   ModBusController();
-  return 0;
 }
