@@ -1,4 +1,7 @@
+#include "iostream"
 #include <stdint.h>
+
+using namespace std;
 
 #ifndef __ModBusMasterManager_h__
 #define __ModBusMasterManager_h__
@@ -19,6 +22,7 @@ class ModBusMasterManager
     void readInputRegister();
     void writeSingleRegister();
     void writeMultipleRegisters();
+    void send();
     
   private:
     /// @brief Common Process Status Code
@@ -40,7 +44,7 @@ class ModBusMasterManager
     /// @brief Logics...
     void selectCallFunction(uint8_t functionCode);
     
-    /// @brief Modbus Master Function
+    /// @brief ModBus Master Function
     uint8_t master(uint8_t functionCode);
 };
 
