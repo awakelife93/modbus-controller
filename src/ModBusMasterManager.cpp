@@ -1,63 +1,49 @@
 #include "ModBusMasterManager.h"
 
-ModBusMasterManager::ModBusMasterManager()
-{
+ModBusMasterManager::ModBusMasterManager() {
   /// function code sample
   uint8_t functionCode = readCoilCode;
   uint8_t test = master(functionCode);
 }
 
-void ModBusMasterManager::send()
-{
+void ModBusMasterManager::send() {
   /// @brief exchange master <-> slave
 }
 
-// todo: send request 할 때 공통화 작업 할 경우, 아래의 function code별 분기 메소드 구조가 바뀔 수 있을 것 같음.
-void ModBusMasterManager::readCoil()
-{
-  cout << "Call readCoil!!" << endl;
-}
+// todo: send request 할 때 공통화 작업 할 경우, 아래의 function code별 분기
+// 메소드 구조가 바뀔 수 있을 것 같음.
+void ModBusMasterManager::readCoil() { cout << "Call readCoil!!" << endl; }
 
-void ModBusMasterManager::readDiscreteInputs()
-{
+void ModBusMasterManager::readDiscreteInputs() {
   cout << "Call readDiscreteInputs!!" << endl;
 }
 
-void ModBusMasterManager::writeSingleCoil()
-{
+void ModBusMasterManager::writeSingleCoil() {
   cout << "Call writeSingleCoil!!" << endl;
 }
 
-void ModBusMasterManager::writeMultipleCoils()
-{
+void ModBusMasterManager::writeMultipleCoils() {
   cout << "Call writeMultipleCoils!!" << endl;
 }
 
-void ModBusMasterManager::readHoldingRegisters()
-{
+void ModBusMasterManager::readHoldingRegisters() {
   cout << "Call readHoldingRegisters!!" << endl;
 }
 
-void ModBusMasterManager::readInputRegister()
-{
+void ModBusMasterManager::readInputRegister() {
   cout << "Call readInputRegister!!" << endl;
 }
 
-void ModBusMasterManager::writeSingleRegister()
-{
+void ModBusMasterManager::writeSingleRegister() {
   cout << "Call writeSingleRegister!!" << endl;
 }
 
-void ModBusMasterManager::writeMultipleRegisters()
-{
+void ModBusMasterManager::writeMultipleRegisters() {
   cout << "Call writeMultipleRegisters!!" << endl;
 }
 
-void ModBusMasterManager::selectCallFunction(uint8_t functionCode)
-{
-  
-  switch (functionCode)
-  {
+void ModBusMasterManager::selectCallFunction(uint8_t functionCode) {
+  switch (functionCode) {
     case readCoilCode:
       readCoil();
       break;
@@ -82,15 +68,13 @@ void ModBusMasterManager::selectCallFunction(uint8_t functionCode)
   }
 }
 
-uint8_t ModBusMasterManager::master(uint8_t functionCode)
-{
+uint8_t ModBusMasterManager::master(uint8_t functionCode) {
   selectCallFunction(functionCode);
   return successCode;
 }
 
 /// this main is only for test run...
-int main()
-{
+int main() {
   ModBusMasterManager();
   return 0;
 }
