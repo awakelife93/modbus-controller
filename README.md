@@ -1,4 +1,4 @@
-# ModBus Protocol - TCP/IP
+# Modbus Protocol - TCP/IP
 ##### Author 박현우
 ##### Create Date 2022.06.28
 #
