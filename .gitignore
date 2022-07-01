@@ -5,6 +5,9 @@
 .vscode
 .DS_Store
 
+# local cmake folder
+.build
+
 ### batch or unix file ###
 src/modbus_master_manager
 
