@@ -8,6 +8,7 @@
 ### 내용
 * modbus protocol
 * code formatter - clang
+* make executable file - cmake 
 ### todo
 * 프로젝트 작업 중...
 #
