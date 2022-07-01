@@ -7,7 +7,7 @@
 #
 ### 내용
 * modbus protocol
-* code formatter - clange
+* code formatter - clang
 ### todo
 * 프로젝트 작업 중...
 #
