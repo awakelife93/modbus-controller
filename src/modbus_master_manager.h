@@ -1,8 +1,8 @@
 #include <stdint.h>
 
-#include "iostream"
+#include <iostream>
 
-using namespace std;
+#include "modbus_master_exception.h"
 
 #ifndef __MODUS_MASTER_MANAGER_h__
 #define __MODUS_MASTER_MANAGER_h__
@@ -14,7 +14,7 @@ class ModBusMasterManager {
     /// Setup MBAP Header Info
     void UpdateUnitId(uint8_t);
     void UpdateTransactionId(uint16_t);
-    void SetSlaveIPAddress(string);
+    void SetSlaveIPAddress(std::string);
 
     /// Send to Slave
     void Request(uint8_t, u_int16_t, u_int16_t);
@@ -41,7 +41,7 @@ class ModBusMasterManager {
     uint8_t mUnitId;
     uint16_t mTransactionId;  /// Increases when master <-> slave exchange is successful
     uint16_t mProtocolId;     /// Protocol ID is always 0x0000 in TCP mode
-    string mSlaveIPAddress;
+    std::string mSlaveIPAddress;
 
     /// ModBus Coil Function Hex Code (Only Access Bit)
     static const uint8_t kReadCoilCode = 0x01;
