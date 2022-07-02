@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.11)
 
+target_compile_features(${TARGET_NAME} PRIVATE cxx_std_17)
+
 project(
   ModooCode
   VERSION 0.1

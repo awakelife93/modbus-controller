@@ -9,6 +9,8 @@
 * modbus protocol
 * code formatter - clang
 * make executable file - cmake 
+* if you use the ide vscode
+  - .vscode/tasks.json in add args "-std=c++17",
 ### todo
 * 프로젝트 작업 중...
 #
