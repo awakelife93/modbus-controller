@@ -49,8 +49,11 @@ void ModBusMasterManager::WriteMultipleRegisters(u_int16_t registerAddress, u_in
     masterTransaction(kWriteMultipleRegistersCode, registerAddress, registerCount);
 }
 
-void ModBusMasterManager::Request(uint8_t functionCode, u_int16_t registerAddress, u_int16_t registerCount) {
+ModBusResponse ModBusMasterManager::Request(uint8_t functionCode, u_int16_t registerAddress, u_int16_t registerCount) {
     /// exchange master <-> slave
+    ModBusResponse response;
+    // todo: slave -> master response to ModBusResponse
+    return response;
 }
 
 void ModBusMasterManager::masterTransaction(uint8_t functionCode, u_int16_t registerAddress, u_int16_t registerCount) {
@@ -60,15 +63,16 @@ void ModBusMasterManager::masterTransaction(uint8_t functionCode, u_int16_t regi
     std::cout << functionCode << std::endl;
     std::cout << registerAddress << std::endl;
     std::cout << registerCount << std::endl;
-    
+
     if (mSlaveIPAddress.empty()) {
-      throw InvalidData();
+        throw InvalidData();
     }
 
-    Request(functionCode, registerAddress, registerCount);
+    ModBusResponse response = Request(functionCode, registerAddress, registerCount);
 
-    /// if exchange successful?
-    UpdateTransactionId(++mTransactionId);
+    if (response.isSuccess) {
+        UpdateTransactionId(++mTransactionId);
+    }
 }
 
 /// this main is only for test run...

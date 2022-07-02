@@ -7,6 +7,16 @@
 #ifndef __MODUS_MASTER_MANAGER_h__
 #define __MODUS_MASTER_MANAGER_h__
 
+struct ModBusResponse {
+    bool isSuccess = true;
+    uint8_t length;
+    uint8_t unitId;
+    uint16_t transactionId;
+    uint16_t protocolId;
+    uint16_t bodyLength;
+    uint16_t bodyCount;
+};
+
 class ModBusMasterManager {
    public:
     ModBusMasterManager();
@@ -17,7 +27,7 @@ class ModBusMasterManager {
     void SetSlaveIPAddress(std::string);
 
     /// Send to Slave
-    void Request(uint8_t, u_int16_t, u_int16_t);
+    ModBusResponse Request(uint8_t, u_int16_t, u_int16_t);
 
     /// ModBus Coil Function (Only Access Bit)
     void ReadCoil(u_int16_t, u_int16_t);
