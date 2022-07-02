@@ -1,21 +1,12 @@
 #include <stdint.h>
 
 #include <iostream>
+#include <tuple>
 
 #include "modbus_master_exception.h"
 
 #ifndef __MODUS_MASTER_MANAGER_h__
 #define __MODUS_MASTER_MANAGER_h__
-
-struct ModBusResponse {
-    bool isSuccess = true;
-    uint8_t length;
-    uint8_t unitId;
-    uint16_t transactionId;
-    uint16_t protocolId;
-    uint16_t bodyLength;
-    uint16_t bodyCount;
-};
 
 class ModBusMasterManager {
    public:
@@ -27,7 +18,7 @@ class ModBusMasterManager {
     void SetSlaveIPAddress(std::string);
 
     /// Send to Slave
-    ModBusResponse Request(uint8_t, u_int16_t, u_int16_t);
+    std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t> Request(uint8_t, u_int16_t, u_int16_t);
 
     /// ModBus Coil Function (Only Access Bit)
     void ReadCoil(u_int16_t, u_int16_t);

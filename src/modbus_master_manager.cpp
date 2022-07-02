@@ -49,35 +49,45 @@ void ModBusMasterManager::WriteMultipleRegisters(u_int16_t registerAddress, u_in
     masterTransaction(kWriteMultipleRegistersCode, registerAddress, registerCount);
 }
 
-ModBusResponse ModBusMasterManager::Request(uint8_t functionCode, u_int16_t registerAddress, u_int16_t registerCount) {
-    /// exchange master <-> slave
-    ModBusResponse response;
-    // todo: slave -> master response to ModBusResponse
-    return response;
+std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t> ModBusMasterManager::Request(uint8_t functionCode, u_int16_t registerAddress, u_int16_t registerCount) {
+    // todo: exchange master <-> slave response to tuple
+    bool isSuccess = true;
+    uint8_t length = 0;
+    uint8_t unitId = 0;
+    uint16_t transactionId = ++mTransactionId;
+    uint16_t protocolId = mProtocolId;
+    uint16_t bodyLength = 0;
+    uint16_t bodyCount = 0;
+    
+    return std::make_tuple(isSuccess, length, unitId, transactionId, protocolId, bodyLength, bodyCount);
 }
 
 void ModBusMasterManager::masterTransaction(uint8_t functionCode, u_int16_t registerAddress, u_int16_t registerCount) {
-    std::cout << mTransactionId << std::endl;
-    std::cout << mUnitId << std::endl;
-    std::cout << mSlaveIPAddress << std::endl;
-    std::cout << functionCode << std::endl;
-    std::cout << registerAddress << std::endl;
-    std::cout << registerCount << std::endl;
-
     if (mSlaveIPAddress.empty()) {
         throw InvalidData();
     }
+    
+    std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t> response;
+    response = Request(functionCode, registerAddress, registerCount);
+    
+    std::cout << "Slave Response" << std::endl;
+    std::apply([](auto&&... field) { ((std::cout << field << std::endl), ...); }, response);
 
-    ModBusResponse response = Request(functionCode, registerAddress, registerCount);
+    bool isSuccess = std::get<0>(response);
+    uint16_t transactionId = std::get<3>(response);
 
-    if (response.isSuccess) {
-        UpdateTransactionId(++mTransactionId);
+    if (isSuccess) {
+        UpdateTransactionId(transactionId);
+        std::cout << "mTransactionId" << std::endl;
+        std::cout << transactionId << std::endl;
     }
 }
 
 /// this main is only for test run...
 int main() {
     ModBusMasterManager masterInstance = ModBusMasterManager();
+    masterInstance.SetSlaveIPAddress("localhost:3000");
+    masterInstance.ReadCoil(2, 30);
 
     // ...
     return 0;
