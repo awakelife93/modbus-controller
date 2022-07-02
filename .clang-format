@@ -3,3 +3,9 @@ Language: Cpp
 BasedOnStyle: Google
 IndentWidth: 4
 ColumnLimit: 0
+UseTab: Never
+TabWidth: 4
+BreakBeforeBraces: Allman
+AllowShortIfStatementsOnASingleLine: false
+IndentCaseLabels: false
+AccessModifierOffset: -4 

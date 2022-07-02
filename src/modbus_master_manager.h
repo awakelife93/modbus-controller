@@ -8,8 +8,9 @@
 #ifndef __MODUS_MASTER_MANAGER_h__
 #define __MODUS_MASTER_MANAGER_h__
 
-class ModBusMasterManager {
-   public:
+class ModBusMasterManager
+{
+public:
     ModBusMasterManager();
 
     /// Setup MBAP Header Info
@@ -36,7 +37,7 @@ class ModBusMasterManager {
     static const uint8_t successCode = 0x00;
     static const uint8_t failCode = 0x01;
 
-   private:
+private:
     /// Master -> Slave Request Params
     uint8_t mLength;
     uint8_t mUnitId;
