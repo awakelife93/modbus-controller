@@ -51,6 +51,7 @@ void ModBusMasterManager::WriteMultipleRegisters(u_int16_t registerAddress, u_in
 
 std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t> ModBusMasterManager::Request(uint8_t functionCode, u_int16_t registerAddress, u_int16_t registerCount) {
     // todo: exchange master <-> slave response to tuple
+    // todo: add body field
     bool isSuccess = true;
     uint8_t length = 0;
     uint8_t unitId = 0;
