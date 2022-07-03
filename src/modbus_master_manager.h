@@ -19,7 +19,8 @@ public:
     void SetSlaveIPAddress(std::string);
 
     /// Send to Slave
-    std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t>
+    std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t,
+               std::string>
         Request(uint8_t, u_int16_t, u_int16_t);
 
     /// ModBus Coil Function (Only Access Bit)

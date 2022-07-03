@@ -66,12 +66,12 @@ void ModBusMasterManager::WriteMultipleRegisters(u_int16_t registerAddress,
                       registerCount);
 }
 
-std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t>
+std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t,
+           std::string>
 ModBusMasterManager::Request(uint8_t functionCode, u_int16_t registerAddress,
                              u_int16_t registerCount)
 {
     // todo: exchange master <-> slave response to tuple
-    // todo: add body field
     bool isSuccess = true;
     uint8_t length = 0;
     uint8_t unitId = 0;
@@ -79,9 +79,10 @@ ModBusMasterManager::Request(uint8_t functionCode, u_int16_t registerAddress,
     uint16_t protocolId = mProtocolId;
     uint16_t bodyLength = 0;
     uint16_t bodyCount = 0;
+    std::string body = "";
 
     return std::make_tuple(isSuccess, length, unitId, transactionId, protocolId,
-                           bodyLength, bodyCount);
+                           bodyLength, bodyCount, body);
 }
 
 void ModBusMasterManager::masterTransaction(uint8_t functionCode,
@@ -93,7 +94,8 @@ void ModBusMasterManager::masterTransaction(uint8_t functionCode,
         throw InvalidData();
     }
 
-    std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t>
+    std::tuple<bool, uint8_t, uint8_t, uint16_t, uint16_t, uint16_t, uint16_t,
+               std::string>
         response;
     response = Request(functionCode, registerAddress, registerCount);
 
